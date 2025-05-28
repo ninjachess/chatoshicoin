@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, ArrowUpRight, Copy, FileText, ChevronLeft, ChevronRight } from "lucide-react"
+import { ArrowRight, ArrowUpRight, Copy, FileText, ChevronLeft, ChevronRight } from 'lucide-react'
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
@@ -104,8 +104,25 @@ export default function ChatoshiLanding() {
     },
   ]
 
-  // Number of slides to show at once
-  const slidesToShow = 4
+  // Responsive slides to show
+  const [slidesToShow, setSlidesToShow] = useState(4)
+
+  // Update slides to show based on screen size
+  useEffect(() => {
+    const updateSlidesToShow = () => {
+      if (window.innerWidth >= 1024) {
+        setSlidesToShow(4) // Desktop: 4 logos
+      } else if (window.innerWidth >= 768) {
+        setSlidesToShow(3) // Tablet: 3 logos
+      } else {
+        setSlidesToShow(1) // Mobile: 1 logo
+      }
+    }
+
+    updateSlidesToShow()
+    window.addEventListener('resize', updateSlidesToShow)
+    return () => window.removeEventListener('resize', updateSlidesToShow)
+  }, [])
 
   // Calculate max slide position (we can scroll until we show the last 4 logos)
   const maxSlide = newsArticles.length - slidesToShow
@@ -355,8 +372,8 @@ export default function ChatoshiLanding() {
           </div>
         </section>
 
-        {/* As Seen On Section */}
-        <section className="py-16 sm:py-20 relative overflow-hidden">
+        {/* As Seen On Section - REDUCED PADDING */}
+        <section className="py-8 sm:py-20 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-[#FF8A00]/5 via-transparent to-[#FF8A00]/5" />
           <div className="container mx-auto px-4 relative">
             <div className="max-w-6xl mx-auto">
@@ -367,80 +384,169 @@ export default function ChatoshiLanding() {
                 <div className="w-24 h-1 bg-gradient-to-r from-transparent via-[#FF8A00] to-transparent mx-auto" />
               </div>
 
-              {/* Fixed Slider - Shows 4 logos at once */}
-              <div
-                className="relative px-12"
-                onMouseEnter={pauseAutoScroll}
-                onMouseLeave={resumeAutoScroll}
-                ref={sliderRef}
-              >
-                {/* Navigation Arrows */}
-                <button
-                  onClick={prevSlide}
-                  className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/80 text-white rounded-full p-2 transition-all duration-300"
-                  aria-label="Previous slide"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-
-                <button
-                  onClick={nextSlide}
-                  className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/80 text-white rounded-full p-2 transition-all duration-300"
-                  aria-label="Next slide"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </button>
-
-                {/* Slider Content */}
-                <div className="overflow-hidden">
-                  <div
-                    className="flex transition-transform duration-500 ease-in-out"
-                    style={{
-                      transform: `translateX(-${(currentSlide * 100) / newsArticles.length}%)`,
-                      width: `${(newsArticles.length * 100) / slidesToShow}%`,
-                    }}
+              {/* Mobile Slider - Shows 1 at a time - COMPACT VERSION */}
+              <div className="block sm:hidden">
+                <div className="relative" onMouseEnter={pauseAutoScroll} onMouseLeave={resumeAutoScroll}>
+                  {/* Navigation Arrows */}
+                  <button
+                    onClick={prevSlide}
+                    className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/80 text-white rounded-full p-1.5 transition-all duration-300 flex items-center justify-center"
+                    style={{ top: 'calc(50% - 8px)' }}
+                    aria-label="Previous slide"
                   >
-                    {newsArticles.map((article, index) => (
-                      <div key={index} className="flex-shrink-0" style={{ width: `${100 / newsArticles.length}%` }}>
-                        <div className="px-3">
-                          <Link href={article.url} target="_blank" rel="noopener noreferrer" className="group block">
-                            <div className="relative h-full rounded-xl bg-white hover:bg-gray-50 backdrop-blur-sm border border-white/20 hover:border-[#FF8A00]/50 transition-all duration-500 shadow-lg hover:shadow-xl p-6 flex flex-col items-center justify-center min-h-[140px]">
-                              {/* Glow effect */}
-                              <div className="absolute inset-0 bg-gradient-to-br from-[#FF8A00]/10 via-transparent to-[#FF8A00]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl" />
+                    <ChevronLeft className="w-4 h-4" />
+                  </button>
 
-                              {/* Content */}
-                              <div className="relative w-full h-16 flex items-center justify-center">
-                                <img
-                                  src={article.logo || "/placeholder.svg"}
-                                  alt={article.name}
-                                  className="max-h-12 max-w-full object-contain transition-all duration-300"
-                                />
-                              </div>
+                  <button
+                    onClick={nextSlide}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/80 text-white rounded-full p-1.5 transition-all duration-300 flex items-center justify-center"
+                    style={{ top: 'calc(50% - 8px)' }}
+                    aria-label="Next slide"
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
 
-                              {/* Bottom accent line */}
-                              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FF8A00] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                            </div>
-                          </Link>
+                  {/* Single Item Display - COMPACT */}
+                  <div className="px-12">
+                    <div className="mx-auto max-w-[200px]">
+                      <Link
+                        href={newsArticles[currentSlide % newsArticles.length].url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group block"
+                      >
+                        <div className="relative h-full rounded-lg bg-white hover:bg-gray-50 backdrop-blur-sm border border-white/20 hover:border-[#FF8A00]/50 transition-all duration-500 shadow-lg hover:shadow-xl p-4 flex flex-col items-center justify-center min-h-[80px]">
+                          {/* Glow effect */}
+                          <div className="absolute inset-0 bg-gradient-to-br from-[#FF8A00]/10 via-transparent to-[#FF8A00]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg" />
+
+                          {/* Content */}
+                          <div className="relative w-full h-10 flex items-center justify-center">
+                            <img
+                              src={newsArticles[currentSlide % newsArticles.length].logo || "/placeholder.svg"}
+                              alt={newsArticles[currentSlide % newsArticles.length].name}
+                              className="max-h-8 max-w-full object-contain transition-all duration-300"
+                              onError={(e) => {
+                                const target = e.target as HTMLImageElement
+                                target.style.display = "none"
+                                const parent = target.parentElement
+                                if (parent) {
+                                  parent.innerHTML = `<div class="text-gray-800 font-semibold text-sm">${newsArticles[currentSlide % newsArticles.length].name}</div>`
+                                }
+                              }}
+                            />
+                          </div>
+
+                          {/* Bottom accent line */}
+                          <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#FF8A00] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                         </div>
-                      </div>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Mobile Indicators - COMPACT */}
+                <div className="flex justify-center mt-4">
+                  <div className="flex items-center gap-1.5">
+                    {newsArticles.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentSlide(index)}
+                        className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                          currentSlide % newsArticles.length === index ? "bg-[#FF8A00]" : "bg-[#FF8A00]/30"
+                        }`}
+                        aria-label={`Go to slide ${index + 1}`}
+                      />
                     ))}
                   </div>
                 </div>
               </div>
 
-              {/* Slider Indicators */}
-              <div className="flex justify-center mt-12">
-                <div className="flex items-center gap-2">
-                  {Array.from({ length: maxSlide + 1 }).map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentSlide(index)}
-                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                        currentSlide === index ? "bg-[#FF8A00]" : "bg-[#FF8A00]/30"
-                      }`}
-                      aria-label={`Go to slide ${index + 1}`}
-                    />
-                  ))}
+              {/* Desktop/Tablet Slider - Shows 4 on desktop, 3 on tablet */}
+              <div className="hidden sm:block">
+                <div
+                  className="relative px-12"
+                  onMouseEnter={pauseAutoScroll}
+                  onMouseLeave={resumeAutoScroll}
+                  ref={sliderRef}
+                >
+                  {/* Navigation Arrows */}
+                  <button
+                    onClick={prevSlide}
+                    className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/80 text-white rounded-full p-2 transition-all duration-300 flex items-center justify-center"
+                    style={{ top: 'calc(50% - 12px)' }}
+                    aria-label="Previous slide"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+
+                  <button
+                    onClick={nextSlide}
+                    className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/80 text-white rounded-full p-2 transition-all duration-300 flex items-center justify-center"
+                    style={{ top: 'calc(50% - 12px)' }}
+                    aria-label="Next slide"
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+
+                  {/* Slider Content */}
+                  <div className="overflow-hidden">
+                    <div
+                      className="flex transition-transform duration-500 ease-in-out"
+                      style={{
+                        transform: `translateX(-${(currentSlide * 100) / newsArticles.length}%)`,
+                        width: `${(newsArticles.length * 100) / slidesToShow}%`,
+                      }}
+                    >
+                      {newsArticles.map((article, index) => (
+                        <div key={index} className="flex-shrink-0" style={{ width: `${100 / newsArticles.length}%` }}>
+                          <div className="px-3">
+                            <Link href={article.url} target="_blank" rel="noopener noreferrer" className="group block">
+                              <div className="relative h-full rounded-xl bg-white hover:bg-gray-50 backdrop-blur-sm border border-white/20 hover:border-[#FF8A00]/50 transition-all duration-500 shadow-lg hover:shadow-xl p-6 flex flex-col items-center justify-center min-h-[140px]">
+                                {/* Glow effect */}
+                                <div className="absolute inset-0 bg-gradient-to-br from-[#FF8A00]/10 via-transparent to-[#FF8A00]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl" />
+
+                                {/* Content */}
+                                <div className="relative w-full h-16 flex items-center justify-center">
+                                  <img
+                                    src={article.logo || "/placeholder.svg"}
+                                    alt={article.name}
+                                    className="max-h-12 max-w-full object-contain transition-all duration-300"
+                                    onError={(e) => {
+                                      const target = e.target as HTMLImageElement
+                                      target.style.display = "none"
+                                      const parent = target.parentElement
+                                      if (parent) {
+                                        parent.innerHTML = `<div class="text-gray-800 font-semibold text-lg">${article.name}</div>`
+                                      }
+                                    }}
+                                  />
+                                </div>
+
+                                {/* Bottom accent line */}
+                                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FF8A00] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                              </div>
+                            </Link>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Desktop/Tablet Indicators */}
+                  <div className="flex justify-center mt-12">
+                    <div className="flex items-center gap-2">
+                      {Array.from({ length: maxSlide + 1 }).map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setCurrentSlide(index)}
+                          className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                            currentSlide === index ? "bg-[#FF8A00]" : "bg-[#FF8A00]/30"
+                          }`}
+                          aria-label={`Go to slide ${index + 1}`}
+                        />
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
