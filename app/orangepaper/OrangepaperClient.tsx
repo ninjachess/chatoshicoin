@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button"
 import { ArrowLeft, ChevronRight, ArrowUp } from "lucide-react"
 import { cn } from "@/lib/utils"
 import ReactMarkdown from "react-markdown"
+import { useToast } from "@/components/ui/use-toast"
+import { Toaster } from "@/components/ui/toaster"
 
 const sections = [
   {
@@ -77,20 +79,17 @@ These pain‑points prevent mainstream adoption and erode user trust.`,
 
 <div class="mt-12 mb-8" id="chat-container">
   <h3 class="text-xl font-semibold text-[#FF8A00] mb-6 text-center">Try Chatoshi AI Live</h3>
-  <div class="bg-gray-800/30 rounded-lg p-4 border border-gray-700">
-    <p class="text-sm text-gray-400 mb-4 text-center">Experience the power of Chatoshi AI directly below:</p>
-    <div class="w-full h-[600px] rounded-lg overflow-hidden border border-gray-600">
-      <iframe 
-        src="https://aichat.chatoshi.ai/" 
-        class="w-full h-full"
-        title="Chatoshi AI Chat Interface"
-        frameborder="0"
-        allow="microphone; camera"
-        loading="lazy"
-        sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-      ></iframe>
-    </div>
-    <p class="text-xs text-gray-500 mt-2 text-center">Interactive demo - Ask Chatoshi AI anything about crypto, DeFi, or Web3!</p>
+  <div class="bg-gray-800/30 rounded-lg p-6 border border-gray-700 text-center">
+    <p class="text-sm text-gray-400 mb-6">Experience the power of Chatoshi AI - your intelligent guide to the crypto universe</p>
+    <a 
+      href="https://aichat.chatoshi.ai/" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      class="inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-black bg-[#FF8A00] rounded-lg hover:bg-[#FF8A00]/90 transition-colors"
+    >
+      Try Chatoshi AI Now
+    </a>
+    <p class="text-xs text-gray-500 mt-6">Ask anything about crypto, DeFi, or Web3 with our advanced AI assistant</p>
   </div>
 </div>`,
   },
@@ -100,23 +99,21 @@ These pain‑points prevent mainstream adoption and erode user trust.`,
     content: `**Utility Snapshot**
 $CHATOSHI is the sole utility token powering every product in the Chatoshi ecosystem:
 
-• **Search‑to‑Earn**: Rewards for validated queries inside the Chatoshi browser.
-• **Premium AI Access**: Stake $CHATOSHI to unlock multi‑agent premium modules.
-• **Cross‑Platform Perks**: Rebates in Hero Wallet, view‑to‑earn on Web3.TV, service credits (discounts) at CryptoTower.
+**Key Utilities:**
+- **Search‑to‑Earn**: Rewards for validated queries inside the Chatoshi browser.
+- **Premium AI Access**: Stake $CHATOSHI to unlock multi‑agent premium modules.
+- **Cross‑Platform Perks**: Rebates in Hero Wallet, view‑to‑earn on Web3.TV, service credits (discounts) at CryptoTower.
 
 **Fair‑Launch Ethos**
-• Launched via pump.fun fair‑launch platform. No presale, IDO, or VC rounds; the community acquired 100% of the supply on‑market.
-• **No Team or Advisor tokens**. Developers buy tokens like every other participant.
-• **No Vesting or Emissions**. All 999M tokens are freely circulating; contract mint authority has been revoked.
-• **No Vesting or Emissions**. All 999M tokens are freely circulating; contract mint authority has been revoked.
-• **On‑Chain Transparency**. Deployment, LP provision, and LP‑burn txids are publicly verifiable on Solana Explorer.
+- Launched via pump.fun fair‑launch platform. No presale, IDO, or VC rounds; the community acquired 100% of the supply on‑market.
+- **No Team or Advisor tokens**. Developers buy tokens like every other participant.
+- **No Vesting or Emissions**. All 999M tokens are freely circulating; contract mint authority has been revoked.
+- **On‑Chain Transparency**. Deployment, LP provision, and LP‑burn txids are publicly verifiable on Solana Explorer.
 
 **Contract Verification & Security**
-• **Open‑Source Code**: SPL contract verified on‑chain.
-• **Tax‑Free**: 0% buy/sell tax; no hidden transfer functions.
-• **Freeze Authority**: Disabled—tokens cannot be frozen by any party.
-
-**Note**: Always verify the contract address **Bhu2wBWxfWkRJ6pFn5NodnEvMCqj9DLfCU5qMvt7pump** when trading or interacting with $CHATOSHI.`,
+- **Open‑Source Code**: SPL contract verified on‑chain.
+- **Tax‑Free**: 0% buy/sell tax; no hidden transfer functions.
+- **Freeze Authority**: Disabled—tokens cannot be frozen by any party.`,
   },
   {
     id: "roadmap",
@@ -132,15 +129,36 @@ $CHATOSHI is the sole utility token powering every product in the Chatoshi ecosy
     <tbody>
       <tr>
         <td class="border border-gray-700 p-3 font-medium">Q3 2024</td>
-        <td class="border border-gray-700 p-3">Core agentic-AI stack locked in — by Cambridge PhD scientists from APTA</td>
+        <td class="border border-gray-700 p-3">
+          <div class="flex items-center gap-2">
+            <span class="inline-flex items-center justify-center w-5 h-5 bg-green-500 text-white rounded-full text-xs">✓</span>
+            Core agentic-AI stack locked in — by Cambridge PhD scientists from APTA
+          </div>
+        </td>
       </tr>
       <tr>
         <td class="border border-gray-700 p-3 font-medium">Q1 2025</td>
-        <td class="border border-gray-700 p-3">Private "Degen" browser beta (achieved)<br/>Public beta + $CHATOSHI TGE (achieved)</td>
+        <td class="border border-gray-700 p-3">
+          <div class="space-y-2">
+            <div class="flex items-center gap-2">
+              <span class="inline-flex items-center justify-center w-5 h-5 bg-green-500 text-white rounded-full text-xs">✓</span>
+              Private "Degen" browser beta
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="inline-flex items-center justify-center w-5 h-5 bg-green-500 text-white rounded-full text-xs">✓</span>
+              Public beta + $CHATOSHI TGE
+            </div>
+          </div>
+        </td>
       </tr>
       <tr>
         <td class="border border-gray-700 p-3 font-medium">Q2 2025</td>
-        <td class="border border-gray-700 p-3">Mobile rollout - iOS & Android apps live</td>
+        <td class="border border-gray-700 p-3">
+          <div class="flex items-center gap-2">
+            <span class="inline-flex items-center justify-center w-5 h-5 bg-green-500 text-white rounded-full text-xs">✓</span>
+            Mobile rollout - iOS & Android apps live
+          </div>
+        </td>       
       </tr>
       <tr>
         <td class="border border-gray-700 p-3 font-medium">Q3 2025</td>
@@ -285,10 +303,10 @@ This page is informational only and should not be construed as financial advice 
 export default function OrangepaperClient() {
   const [activeSection, setActiveSection] = useState("abstract")
   const [showScrollTop, setShowScrollTop] = useState(false)
-  const [iframeLoaded, setIframeLoaded] = useState(false)
   const mainContentRef = useRef<HTMLDivElement>(null)
   const { scrollY } = useScroll()
   const y = useTransform(scrollY, [0, 300], [0, -50])
+  const { toast } = useToast()
 
   // Force scroll to top on initial load
   useEffect(() => {
@@ -315,36 +333,6 @@ export default function OrangepaperClient() {
       const offset = element.offsetTop - 80
       window.scrollTo({ top: offset, behavior: "smooth" })
     }
-  }
-
-  // Custom component to handle iframe with controlled loading
-  const ChatIframe = () => {
-    const iframeRef = useRef<HTMLIFrameElement>(null)
-
-    const handleIframeLoad = () => {
-      setIframeLoaded(true)
-      // Prevent iframe from causing page scroll
-      if (mainContentRef.current) {
-        const currentScroll = window.scrollY
-        setTimeout(() => {
-          window.scrollTo(0, currentScroll)
-        }, 100)
-      }
-    }
-
-    return (
-      <iframe
-        ref={iframeRef}
-        src="https://aichat.chatoshi.ai/"
-        className="w-full h-full"
-        title="Chatoshi AI Chat Interface"
-        frameBorder="0"
-        allow="microphone; camera"
-        loading="lazy"
-        sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-        onLoad={handleIframeLoad}
-      />
-    )
   }
 
   return (
@@ -534,7 +522,91 @@ export default function OrangepaperClient() {
                                         <ol className="list-decimal ml-6 space-y-1 my-3" {...props} />
                                       ),
                                       li: ({ node, ...props }) => <li className="pl-2 leading-relaxed" {...props} />,
-                                      p: ({ node, ...props }) => <p className="mb-3 leading-relaxed" {...props} />,
+                                      p: ({ node, children, ...props }) => {
+                                        const content = children?.toString() || ""
+
+                                        // Special handling for contract address paragraph
+                                        if (content.includes("Bhu2wBWxfWkRJ6pFn5NodnEvMCqj9DLfCU5qMvt7pump")) {
+                                          return (
+                                            <div className="bg-gradient-to-r from-gray-800/50 to-gray-900/50 rounded-xl p-6 border border-[#FF8A00]/20 my-8 shadow-lg">
+                                              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                                                <div className="flex-1 min-w-0">
+                                                  <div className="flex items-center gap-2 mb-3">
+                                                    <svg
+                                                      className="w-5 h-5 text-[#FF8A00]"
+                                                      fill="currentColor"
+                                                      viewBox="0 0 20 20"
+                                                    >
+                                                      <path
+                                                        fillRule="evenodd"
+                                                        d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
+                                                        clipRule="evenodd"
+                                                      />
+                                                    </svg>
+                                                    <p className="text-sm font-semibold text-[#FF8A00]">
+                                                      Contract Address
+                                                    </p>
+                                                  </div>
+                                                  <div className="bg-black/40 p-4 rounded-lg border border-gray-700/50 backdrop-blur-sm">
+                                                    <p className="text-sm font-mono break-all text-gray-200 leading-relaxed">
+                                                      Bhu2wBWxfWkRJ6pFn5NodnEvMCqj9DLfCU5qMvt7pump
+                                                    </p>
+                                                  </div>
+                                                </div>
+                                                <button
+                                                  onClick={() => {
+                                                    navigator.clipboard.writeText(
+                                                      "Bhu2wBWxfWkRJ6pFn5NodnEvMCqj9DLfCU5qMvt7pump",
+                                                    )
+                                                    // Optional: Add toast notification here
+                                                  }}
+                                                  className="flex items-center gap-2 px-6 py-3 bg-[#FF8A00] hover:bg-[#FF8A00]/90 text-black rounded-lg transition-all duration-200 font-semibold text-sm hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl"
+                                                >
+                                                  <svg
+                                                    className="w-4 h-4"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    viewBox="0 0 24 24"
+                                                  >
+                                                    <path
+                                                      strokeLinecap="round"
+                                                      strokeLinejoin="round"
+                                                      strokeWidth={2}
+                                                      d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                                                    />
+                                                  </svg>
+                                                  Copy Address
+                                                </button>
+                                              </div>
+                                              <div className="mt-4 p-3 bg-yellow-900/20 border border-yellow-600/30 rounded-lg backdrop-blur-sm">
+                                                <p className="text-xs text-yellow-200 flex items-start gap-2">
+                                                  <svg
+                                                    className="w-4 h-4 mt-0.5 flex-shrink-0"
+                                                    fill="currentColor"
+                                                    viewBox="0 0 20 20"
+                                                  >
+                                                    <path
+                                                      fillRule="evenodd"
+                                                      d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                                                      clipRule="evenodd"
+                                                    />
+                                                  </svg>
+                                                  <span className="font-medium">Security Notice:</span> Always verify
+                                                  the contract address when trading or interacting with $CHATOSHI
+                                                  tokens.
+                                                </p>
+                                              </div>
+                                            </div>
+                                          )
+                                        }
+
+                                        // Regular paragraph
+                                        return (
+                                          <p className="mb-3 leading-relaxed" {...props}>
+                                            {children}
+                                          </p>
+                                        )
+                                      },
                                       strong: ({ node, ...props }) => (
                                         <strong className="font-semibold text-[#FF8A00]" {...props} />
                                       ),
@@ -554,7 +626,7 @@ export default function OrangepaperClient() {
                     return (
                       <section key={section.id} id={section.id} className="scroll-mt-24">
                         <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-[#FF8A00]">{section.title}</h2>
-                        <div className="space-y-4 text-gray-300">
+                        <div className="space-y-6 text-gray-300">
                           {section.content.includes("<table") || section.content.includes("<img") ? (
                             <div dangerouslySetInnerHTML={{ __html: section.content }} />
                           ) : (
@@ -587,7 +659,94 @@ export default function OrangepaperClient() {
                                       <ol className="list-decimal ml-6 space-y-1 my-3" {...props} />
                                     ),
                                     li: ({ node, ...props }) => <li className="pl-2 leading-relaxed" {...props} />,
-                                    p: ({ node, ...props }) => <p className="mb-3 leading-relaxed" {...props} />,
+                                    p: ({ node, children, ...props }) => {
+                                      const content = children?.toString() || ""
+
+                                      // Special handling for contract address paragraph
+                                      if (content.includes("Bhu2wBWxfWkRJ6pFn5NodnEvMCqj9DLfCU5qMvt7pump")) {
+                                        return (
+                                          <div className="bg-gradient-to-r from-gray-800/50 to-gray-900/50 rounded-xl p-6 border border-[#FF8A00]/20 my-8 shadow-lg">
+                                            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                                              <div className="flex-1 min-w-0">
+                                                <div className="flex items-center gap-2 mb-3">
+                                                  <svg
+                                                    className="w-5 h-5 text-[#FF8A00]"
+                                                    fill="currentColor"
+                                                    viewBox="0 0 20 20"
+                                                  >
+                                                    <path
+                                                      fillRule="evenodd"
+                                                      d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
+                                                      clipRule="evenodd"
+                                                    />
+                                                  </svg>
+                                                  <p className="text-sm font-semibold text-[#FF8A00]">
+                                                    Contract Address
+                                                  </p>
+                                                </div>
+                                                <div className="bg-black/40 p-4 rounded-lg border border-gray-700/50 backdrop-blur-sm">
+                                                  <p className="text-sm font-mono break-all text-gray-200 leading-relaxed">
+                                                    Bhu2wBWxfWkRJ6pFn5NodnEvMCqj9DLfCU5qMvt7pump
+                                                  </p>
+                                                </div>
+                                              </div>
+                                              <button
+                                                onClick={() => {
+                                                  navigator.clipboard.writeText(
+                                                    "Bhu2wBWxfWkRJ6pFn5NodnEvMCqj9DLfCU5qMvt7pump",
+                                                  )
+                                                  toast({
+                                                    title: "Copied!",
+                                                    description: "Contract address copied to clipboard",
+                                                    duration: 2000,
+                                                  })
+                                                }}
+                                                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-black bg-[#FF8A00] rounded-md hover:bg-[#FF8A00]/90 transition-all duration-200 hover:scale-105 active:scale-95 shadow-md hover:shadow-lg"
+                                              >
+                                                <svg
+                                                  className="w-4 h-4"
+                                                  fill="none"
+                                                  stroke="currentColor"
+                                                  viewBox="0 0 24 24"
+                                                >
+                                                  <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth={2}
+                                                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                                                  />
+                                                </svg>
+                                                Copy Address
+                                              </button>
+                                            </div>
+                                            <div className="mt-4 p-3 bg-yellow-900/20 border border-yellow-600/30 rounded-lg backdrop-blur-sm">
+                                              <p className="text-xs text-yellow-200 flex items-start gap-2">
+                                                <svg
+                                                  className="w-4 h-4 mt-0.5 flex-shrink-0"
+                                                  fill="currentColor"
+                                                  viewBox="0 0 20 20"
+                                                >
+                                                  <path
+                                                    fillRule="evenodd"
+                                                    d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                                                    clipRule="evenodd"
+                                                  />
+                                                </svg>
+                                                <span className="font-medium">Security Notice:</span> Always verify the
+                                                contract address when trading or interacting with $CHATOSHI tokens.
+                                              </p>
+                                            </div>
+                                          </div>
+                                        )
+                                      }
+
+                                      // Regular paragraph
+                                      return (
+                                        <p className="mb-3 leading-relaxed" {...props}>
+                                          {children}
+                                        </p>
+                                      )
+                                    },
                                     strong: ({ node, ...props }) => (
                                       <strong className="font-semibold text-[#FF8A00]" {...props} />
                                     ),
@@ -597,6 +756,49 @@ export default function OrangepaperClient() {
                                 </ReactMarkdown>
                               </div>
                             ))
+                          )}
+
+                          {/* Add Contract Address Box for tokenomics section */}
+                          {section.id === "tokenomics" && (
+                            <div className="mt-12 mb-8">
+                              <h3 className="text-xl font-semibold text-[#FF8A00] mb-6 text-center">
+                                Contract Address
+                              </h3>
+                              <div className="bg-gray-800/30 rounded-lg p-6 border border-gray-700 text-center">
+                                <p className="text-sm text-gray-400 mb-6">
+                                  Always verify the contract address when trading or interacting with $CHATOSHI
+                                </p>
+                                <div className="bg-black/40 p-4 rounded-lg border border-gray-700/50 backdrop-blur-sm mb-6">
+                                  <p className="text-sm font-mono break-all text-gray-200 leading-relaxed">
+                                    Bhu2wBWxfWkRJ6pFn5NodnEvMCqj9DLfCU5qMvt7pump
+                                  </p>
+                                </div>
+                                <button
+                                  onClick={() => {
+                                    navigator.clipboard.writeText("Bhu2wBWxfWkRJ6pFn5NodnEvMCqj9DLfCU5qMvt7pump")
+                                    toast({
+                                      title: "Copied!",
+                                      description: "Contract address copied to clipboard",
+                                      duration: 2000,
+                                    })
+                                  }}
+                                  className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-black bg-[#FF8A00] rounded-lg hover:bg-[#FF8A00]/90 transition-colors"
+                                >
+                                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth="2"
+                                      d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                                    />
+                                  </svg>
+                                  Copy Contract Address
+                                </button>
+                                <p className="text-xs text-gray-500 mt-6">
+                                  Secure your transactions by always verifying this address
+                                </p>
+                              </div>
+                            </div>
                           )}
                         </div>
                       </section>
@@ -624,6 +826,7 @@ export default function OrangepaperClient() {
             <ArrowUp className="h-4 w-4" />
           </Button>
         </motion.div>
+        <Toaster />
       </div>
     </>
   )

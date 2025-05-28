@@ -1,8 +1,8 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, ArrowUpRight, Copy, FileText } from "lucide-react"
+import { ArrowRight, ArrowUpRight, Copy, FileText, ChevronLeft, ChevronRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
@@ -16,8 +16,9 @@ export default function ChatoshiLanding() {
   const [isLoading, setIsLoading] = useState(true)
   const [videosLoaded, setVideosLoaded] = useState(false)
   const contractAddress = "Bhu2wBWxfWkRJ6pFn5NodnEvMCqj9DLfCU5qMvt7pump"
-  // const { scrollY } = useScroll()
-  // const y = useTransform(scrollY, [0, 300], [0, -50])
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
+  const sliderRef = useRef<HTMLDivElement>(null)
 
   const { toast } = useToast()
   const copyAddress = () => {
@@ -28,29 +29,102 @@ export default function ChatoshiLanding() {
     })
   }
 
+  const videoSources = [
+    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Video%201%20-%20Initiation_1-f1r1rChLIG8MvDbT385KVotYisHWwD.mp4",
+    "https://cryptotower.com/videos/CTGif.gif.mp4",
+    "https://web3.tv/splash.mp4",
+  ]
+
+  const newsArticles = [
+    {
+      name: "Forbes",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/d/db/Forbes_logo.svg",
+      url: "https://www.forbes.com/digital-assets/assets/chatoshi-chatoshi/",
+      title: "ChAtoshI (CHATOSHI) - Digital Assets",
+    },
+    {
+      name: "Entrepreneur",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/f/f9/Entrepreneur_%28magazine%29_logo_2012.svg",
+      url: "https://www.entrepreneur.com/en-ae/business-news/dubai-announces-launch-of-worlds-first-ever-crypto-tower/485621",
+      title: "Dubai Announces Launch of World's First Ever Crypto Tower",
+    },
+    {
+      name: "The Crypto Updates",
+      logo: "https://www.thecryptoupdates.com/wp-content/uploads/2020/01/cropped-Untitled-3-1-e1655457005397.png",
+      url: "https://www.thecryptoupdates.com/your-command-center-for-solana-chatoshis-ai-browser-rewrites-the-rules-of-defi/",
+      title: "Your Command Center for Solana: Chatoshi's AI Browser Rewrites the Rules of DeFi",
+    },
+    {
+      name: "ABC Money",
+      logo: "https://www.abcmoney.co.uk/wp-content/uploads/2024/09/ABCMoney.png",
+      url: "https://www.abcmoney.co.uk/2025/01/crypto-craze-hits-new-heights-with-chatoshi-coin/",
+      title: "Crypto Craze Hits New Heights with Chatoshi Coin",
+    },
+    {
+      name: "Gulf Business",
+      logo: "https://gulfbusiness.com/wp-content/uploads/2020/06/GB-black-1.png",
+      url: "https://gulfbusiness.com/dmcc-reit-devlpt-to-build-crypto-tower-in-jlt/",
+      title: "DMCC REIT Devlpt to Build Crypto Tower in JLT",
+    },
+    {
+      name: "Inside Bitcoins",
+      logo: "https://insidebitcoins.com/wp-content/uploads/2021/08/logo-onWhite.svg",
+      url: "https://insidebitcoins.com/news/dubai-unveils-plans-for-a-state-of-the-art-crypto-tower",
+      title: "Dubai Unveils Plans for a State-of-the-Art Crypto Tower",
+    },
+    {
+      name: "World Construction Network",
+      logo: "https://www.worldconstructionnetwork.com/wp-content/uploads/sites/26/2017/10/WCN_header-002.png",
+      url: "https://www.worldconstructionnetwork.com/news/dmcc-reit-crypto-tower/",
+      title: "DMCC REIT Crypto Tower",
+    },
+  ]
+
+  // Number of slides to show at once
+  const slidesToShow = 4
+
+  // Calculate max slide position (we can scroll until we show the last 4 logos)
+  const maxSlide = newsArticles.length - slidesToShow
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev >= maxSlide ? 0 : prev + 1))
+  }
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? maxSlide : prev - 1))
+  }
+
+  const loadVideos = async () => {
+    const videoPromises = videoSources.map(
+      (src) =>
+        new Promise((resolve) => {
+          const video = document.createElement("video")
+          video.onloadeddata = () => resolve(true)
+          video.onerror = () => resolve(false)
+          video.src = src
+        }),
+    )
+
+    const results = await Promise.all(videoPromises)
+    const allLoaded = results.every(Boolean)
+    setVideosLoaded(allLoaded)
+  }
+
+  const goToSlide = (index) => {
+    setCurrentSlide(index)
+  }
+
+  // Pause auto-scrolling when hovering over the slider
+  const pauseAutoScroll = () => {
+    setIsPaused(true)
+  }
+
+  // Resume auto-scrolling when mouse leaves the slider
+  const resumeAutoScroll = () => {
+    setIsPaused(false)
+  }
+
   useEffect(() => {
-    const videoSources = [
-      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Video%201%20-%20Initiation_1-f1r1rChLIG8MvDbT385KVotYisHWwD.mp4",
-      "https://cryptotower.com/videos/CTGif.gif.mp4",
-      "https://web3.tv/splash.mp4",
-    ]
-
-    const loadVideos = async () => {
-      const videoPromises = videoSources.map(
-        (src) =>
-          new Promise((resolve) => {
-            const video = document.createElement("video")
-            video.onloadeddata = () => resolve(true)
-            video.onerror = () => resolve(false)
-            video.src = src
-          }),
-      )
-
-      const results = await Promise.all(videoPromises)
-      const allLoaded = results.every(Boolean)
-      setVideosLoaded(allLoaded)
-    }
-
     const timer = setTimeout(() => {
       setIsLoading(false)
     }, 10000) // 10 seconds timeout
@@ -66,38 +140,22 @@ export default function ChatoshiLanding() {
     }
   }, [videosLoaded])
 
+  // Auto-scroll effect
+  useEffect(() => {
+    if (isPaused) return
+
+    const interval = setInterval(() => {
+      nextSlide()
+    }, 5000) // Auto-scroll every 5 seconds
+
+    return () => clearInterval(interval)
+  }, [isPaused])
+
   if (isLoading) {
     return <Loader onLoadingComplete={() => setIsLoading(false)} />
   }
 
   const buttonHoverStyle = "hover:bg-white hover:text-black"
-
-  const newsArticles = [
-    {
-      name: "The Crypto Updates",
-      logo: "https://www.thecryptoupdates.com/wp-content/uploads/2020/01/cropped-Untitled-3-1-e1655457005397.png",
-      url: "https://www.thecryptoupdates.com/your-command-center-for-solana-chatoshis-ai-browser-rewrites-the-rules-of-defi/",
-      title: "Your Command Center for Solana: Chatoshi's AI Browser Rewrites the Rules of DeFi",
-    },
-    {
-      name: "ABC Money",
-      logo: "https://www.abcmoney.co.uk/wp-content/uploads/2024/09/ABCMoney.png",
-      url: "https://www.abcmoney.co.uk/2025/01/crypto-craze-hits-new-heights-with-chatoshi-coin/",
-      title: "Crypto Craze Hits New Heights with Chatoshi Coin",
-    },
-    {
-      name: "Inside Bitcoins",
-      logo: "https://insidebitcoins.com/wp-content/uploads/2021/08/logo-onWhite.svg",
-      url: "https://insidebitcoins.com/news/dubai-unveils-plans-for-a-state-of-the-art-crypto-tower",
-      title: "Dubai Unveils Plans for a State-of-the-Art Crypto Tower",
-    },
-    {
-      name: "World Construction Network",
-      logo: "https://www.worldconstructionnetwork.com/wp-content/uploads/sites/26/2017/10/WCN_header-002.png",
-      url: "https://www.worldconstructionnetwork.com/news/dmcc-reit-crypto-tower/",
-      title: "DMCC REIT Crypto Tower",
-    },
-  ]
 
   return (
     <Layout>
@@ -242,45 +300,80 @@ export default function ChatoshiLanding() {
                 <div className="w-24 h-1 bg-gradient-to-r from-transparent via-[#FF8A00] to-transparent mx-auto" />
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {newsArticles.map((article, index) => (
-                  <Link
-                    key={index}
-                    href={article.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group relative"
-                  >
-                    <div className="relative overflow-hidden rounded-xl bg-white hover:bg-gray-50 backdrop-blur-sm border border-white/20 hover:border-[#FF8A00]/50 transition-all duration-500 shadow-lg hover:shadow-xl">
-                      {/* Glow effect */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-[#FF8A00]/10 via-transparent to-[#FF8A00]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* Fixed Slider - Shows 4 logos at once */}
+              <div
+                className="relative px-12"
+                onMouseEnter={pauseAutoScroll}
+                onMouseLeave={resumeAutoScroll}
+                ref={sliderRef}
+              >
+                {/* Navigation Arrows */}
+                <button
+                  onClick={prevSlide}
+                  className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/80 text-white rounded-full p-2 transition-all duration-300"
+                  aria-label="Previous slide"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
 
-                      {/* Content */}
-                      <div className="relative p-8 flex flex-col items-center justify-center min-h-[140px]">
-                        <div className="w-full h-16 flex items-center justify-center">
-                          <img
-                            src={article.logo || "/placeholder.svg"}
-                            alt={article.name}
-                            className="max-h-12 max-w-full object-contain transition-all duration-300"
-                          />
+                <button
+                  onClick={nextSlide}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/80 text-white rounded-full p-2 transition-all duration-300"
+                  aria-label="Next slide"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+
+                {/* Slider Content */}
+                <div className="overflow-hidden">
+                  <div
+                    className="flex transition-transform duration-500 ease-in-out"
+                    style={{
+                      transform: `translateX(-${(currentSlide * 100) / newsArticles.length}%)`,
+                      width: `${(newsArticles.length * 100) / slidesToShow}%`,
+                    }}
+                  >
+                    {newsArticles.map((article, index) => (
+                      <div key={index} className="flex-shrink-0" style={{ width: `${100 / newsArticles.length}%` }}>
+                        <div className="px-3">
+                          <Link href={article.url} target="_blank" rel="noopener noreferrer" className="group block">
+                            <div className="relative h-full rounded-xl bg-white hover:bg-gray-50 backdrop-blur-sm border border-white/20 hover:border-[#FF8A00]/50 transition-all duration-500 shadow-lg hover:shadow-xl p-6 flex flex-col items-center justify-center min-h-[140px]">
+                              {/* Glow effect */}
+                              <div className="absolute inset-0 bg-gradient-to-br from-[#FF8A00]/10 via-transparent to-[#FF8A00]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl" />
+
+                              {/* Content */}
+                              <div className="relative w-full h-16 flex items-center justify-center">
+                                <img
+                                  src={article.logo || "/placeholder.svg"}
+                                  alt={article.name}
+                                  className="max-h-12 max-w-full object-contain transition-all duration-300"
+                                />
+                              </div>
+
+                              {/* Bottom accent line */}
+                              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FF8A00] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            </div>
+                          </Link>
                         </div>
                       </div>
-
-                      {/* Bottom accent line */}
-                      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FF8A00] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    </div>
-                  </Link>
-                ))}
+                    ))}
+                  </div>
+                </div>
               </div>
 
-              {/* Decorative elements */}
+              {/* Slider Indicators */}
               <div className="flex justify-center mt-12">
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-[#FF8A00]/30" />
-                  <div className="w-2 h-2 rounded-full bg-[#FF8A00]/60" />
-                  <div className="w-2 h-2 rounded-full bg-[#FF8A00]" />
-                  <div className="w-2 h-2 rounded-full bg-[#FF8A00]/60" />
-                  <div className="w-2 h-2 rounded-full bg-[#FF8A00]/30" />
+                  {Array.from({ length: maxSlide + 1 }).map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentSlide(index)}
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                        currentSlide === index ? "bg-[#FF8A00]" : "bg-[#FF8A00]/30"
+                      }`}
+                      aria-label={`Go to slide ${index + 1}`}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
