@@ -78,6 +78,30 @@ export default function ChatoshiLanding() {
       url: "https://www.worldconstructionnetwork.com/news/dmcc-reit-crypto-tower/",
       title: "DMCC REIT Crypto Tower",
     },
+    {
+      name: "Crypto News",
+      logo: "https://cryptonews.net/i/cnews-logo-new.svg",
+      url: "https://cryptonews.net/editorial/technology/8-reasons-why-chatoshi-outpaces-meme-coins-and-powers-dubais-first-crypto-tower/",
+      title: "8 Reasons Why chAtoshI Outpaces Meme Coins and Powers Dubai's First Crypto Tower",
+    },
+    {
+      name: "Finance Feeds",
+      logo: "https://financefeeds.com/wp-content/uploads/2024/05/FinanceFeeds-Logo.png",
+      url: "https://financefeeds.com/chatoshi-the-ultimate-crypto-browser-token-redefining-solana-ecosystems/",
+      title: "Chatoshi: The Ultimate Crypto Browser Token Redefining Solana Ecosystems",
+    },
+    {
+      name: "Tech Bullion",
+      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TechBullion-colored-logo-1024x296-lle32aOG6Fp1u5ppwcHCWkjWbtfy8t.webp",
+      url: "https://techbullion.com/techbullion-reviews-doge-shib-xrp-pluto-chatoshi-is-the-true-next-gen-token/",
+      title: "TechBullion Reviews: DOGE, SHIB, XRP, PLUTO, Chatoshi is the True Next-Gen Token",
+    },
+    {
+      name: "Emirates 24/7",
+      logo: "https://www.emirates247.com/polopoly_fs/7.106.1453021014!/image/image.png_gen/derivatives/default/image.png",
+      url: "https://www.emirates247.com/business/real-estate/dmcc-and-reit-development-unveil-landmark-crypto-tower-in-jlt-2025-01-15-1.736268",
+      title: "DMCC and REIT Development Unveil Landmark Crypto Tower in JLT",
+    },
   ]
 
   // Number of slides to show at once
@@ -175,8 +199,51 @@ export default function ChatoshiLanding() {
             </div>
             <div className="flex items-center gap-4">
               <Link href="/orangepaper">
-                <Button variant="outline" className={`border-[#FF8A00] text-[#FF8A00] ${buttonHoverStyle}`}>
-                  <FileText className="mr-2 h-4 w-4" /> Orangepaper
+                <Button variant="outline" className={`border-[#FF8A00] text-[#FF8A00] ${buttonHoverStyle} group`}>
+                  <div className="relative mr-2 h-4 w-4">
+                    <FileText className="absolute inset-0 h-4 w-4 transition-opacity group-hover:opacity-0" />
+                    <svg
+                      className="absolute inset-0 h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100"
+                      viewBox="0 0 512.004 512.004"
+                      fill="currentColor"
+                    >
+                      <circle fill="#E07F00" cx="256.002" cy="256.002" r="256.002" />
+                      <circle fill="#FFD77D" cx="256.002" cy="256.002" r="216.056" />
+                      <circle fill="#F7B202" cx="256.002" cy="256.002" r="201.458" />
+                      <g>
+                        <circle fill="#FFD77D" cx="256.002" cy="256.002" r="48.244" />
+                        <rect x="249.512" y="44.109" fill="#FFD77D" width="14.29" height="423.794" />
+                        <rect x="44.109" y="248.855" fill="#FFD77D" width="423.794" height="14.286" />
+                        <rect
+                          x="249.097"
+                          y="44.332"
+                          transform="matrix(-0.7072 -0.707 0.707 -0.7072 256.3009 618.5966)"
+                          fill="#FFD77D"
+                          width="14.286"
+                          height="423.79"
+                        />
+                        <rect
+                          x="248.603"
+                          y="43.849"
+                          transform="matrix(0.7072 -0.707 0.707 0.7072 -105.9325 255.6944)"
+                          fill="#FFD77D"
+                          width="14.286"
+                          height="423.79"
+                        />
+                      </g>
+                      <g opacity="0.4">
+                        <circle fill="#FFFFFF" cx="373.417" cy="99.884" r="40.519" />
+                        <circle fill="#FFFFFF" cx="438.12" cy="166.605" r="20.262" />
+                      </g>
+                      <g opacity="0.2">
+                        <path
+                          d="M44.109,298.377C24.077,179.324,94.257,81.704,160.515,18.473C66.44,56.329,0,148.377,0,255.994
+                          c0,141.389,114.613,256.002,255.998,256.002c43.966,0,85.337-11.1,121.483-30.622C230.893,507.588,69.808,451.112,44.109,298.377z"
+                        />
+                      </g>
+                    </svg>
+                  </div>
+                  Orangepaper
                 </Button>
               </Link>
               <Link
