@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 
@@ -6,18 +8,23 @@ export const Loader = ({ onLoadingComplete }: { onLoadingComplete: () => void })
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setProgress((prevProgress) => {
-        if (prevProgress >= 100) {
+      setProgress((prev) => {
+        if (prev >= 100) {
           clearInterval(interval)
-          onLoadingComplete()
           return 100
         }
-        return prevProgress + 1
+        return prev + 1
       })
     }, 30)
 
     return () => clearInterval(interval)
-  }, [onLoadingComplete])
+  }, [])
+
+  useEffect(() => {
+    if (progress === 100) {
+      onLoadingComplete()
+    }
+  }, [progress, onLoadingComplete])
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black">

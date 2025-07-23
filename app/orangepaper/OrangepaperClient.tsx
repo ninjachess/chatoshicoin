@@ -195,80 +195,80 @@ $CHATOSHI is the sole utility token powering every product in the Chatoshi ecosy
 Founded by a world-class team of PhDs from the University of Cambridge at <a href="https://www.aptaai.com/" target="_blank" rel="noopener noreferrer" class="text-[#FF8A00] hover:underline">APTA AI</a>. We have collectively produced >30 AI papers in leading journals and conferences. Our team members have worked at some of the leading institutions in the space including Meta, Amazon Web Services and McKinsey. This wealth of experience places us at the forefront of AI innovation, driving us to deliver best-in-class AI solutions that redefine industry standards.
 
 <div class="overflow-x-auto mt-8">
-  <table class="w-full border-collapse">
-    <thead>
-      <tr>
-        <th class="border border-gray-700 bg-gray-800 p-3 text-left">Name</th>
-        <th class="border border-gray-700 bg-gray-800 p-3 text-left">Role at APTA</th>
-        <th class="border border-gray-700 bg-gray-800 p-3 text-left">Key Credentials</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="border border-gray-700 p-3 font-medium">
-          <a href="https://www.linkedin.com/in/shirom-chabra/" target="_blank" rel="noopener noreferrer" class="text-[#FF8A00] hover:underline">
-            Shirom Chabra
-          </a>
-        </td>
-        <td class="border border-gray-700 p-3">Chief Executive Officer (CEO)</td>
-        <td class="border border-gray-700 p-3">PhD in Computational Biology, University of Cambridge (Ranked 5/360); former Consultant at McKinsey & Company</td>
-      </tr>
-      <tr>
-        <td class="border border-gray-700 p-3 font-medium">
-          <a href="https://www.linkedin.com/in/vatsal-raina-497a48139/" target="_blank" rel="noopener noreferrer" class="text-[#FF8A00] hover:underline">
-            Vatsal Raina
-          </a>
-        </td>
-        <td class="border border-gray-700 p-3">Chief Technology Officer (CTO)</td>
-        <td class="border border-gray-700 p-3">PhD, Machine Intelligence Lab, University of Cambridge (Ranked 6/300); former Researcher at Amazon; 20+ AI papers at top conferences</td>
-      </tr>
-      <tr>
-        <td class="border border-gray-700 p-3 font-medium">
-          <a href="https://www.linkedin.com/in/vyas-raina-71b226152/" target="_blank" rel="noopener noreferrer" class="text-[#FF8A00] hover:underline">
-            Vyas Raina
-          </a>
-        </td>
-        <td class="border border-gray-700 p-3">Chief Strategy Officer (CSO)</td>
-        <td class="border border-gray-700 p-3">PhD, Machine Intelligence Lab, University of Cambridge (Ranked 9/300); 20+ AI papers; 1000+ citations</td>
-      </tr>
-      <tr>
-        <td class="border border-gray-700 p-3 font-medium">
-          <a href="https://www.linkedin.com/in/adian-liusie-00b60511a/" target="_blank" rel="noopener noreferrer" class="text-[#FF8A00] hover:underline">
-            Adian Liusie
-          </a>
-        </td>
-        <td class="border border-gray-700 p-3">Lead AI Director</td>
-        <td class="border border-gray-700 p-3">PhD, Machine Intelligence Lab, University of Cambridge (Ranked 2/300); former Researcher at Meta AI; 20+ AI papers at top-tier venues</td>
-      </tr>
-      <tr>
-        <td class="border border-gray-700 p-3 font-medium">
-          <a href="https://www.linkedin.com/in/adam-liusie-54195b151/" target="_blank" rel="noopener noreferrer" class="text-[#FF8A00] hover:underline">
-            Adam Liusie
-          </a>
-        </td>
-        <td class="border border-gray-700 p-3">AI Research Scientist</td>
-        <td class="border border-gray-700 p-3">PhD, Machine Intelligence Lab, University of Cambridge; AI Research expertise with publications in top-tier conferences</td>
-      </tr>
-      <tr>
-        <td class="border border-gray-700 p-3 font-medium">
-          <a href="https://www.linkedin.com/in/akash--gupta/" target="_blank" rel="noopener noreferrer" class="text-[#FF8A00] hover:underline">
-            Akash Gupta
-          </a>
-        </td>
-        <td class="border border-gray-700 p-3">Founding AI Engineer</td>
-        <td class="border border-gray-700 p-3">MPhil in Machine Learning, University of Cambridge; published at NAACL (top NLP conference)</td>
-      </tr>
-      <tr>
-        <td class="border border-gray-700 p-3 font-medium">
-          <a href="https://www.linkedin.com/in/piotr-molenda-10180b248/" target="_blank" rel="noopener noreferrer" class="text-[#FF8A00] hover:underline">
-            Piotr Molenda
-          </a>
-        </td>
-        <td class="border border-gray-700 p-3">Founding AI Engineer</td>
-        <td class="border border-gray-700 p-3">MPhil in Machine Learning, University of Cambridge (Ranked 4/300); published at EMNLP (top NLP conference)</td>
-      </tr>
-    </tbody>
-  </table>
+<table class="w-full border-collapse">
+  <thead>
+    <tr>
+      <th class="border border-gray-700 bg-gray-800 p-3 text-left">Name</th>
+      <th class="border border-gray-700 bg-gray-800 p-3 text-left">Role at APTA</th>
+      <th class="border border-gray-700 bg-gray-800 p-3 text-left">Key Credentials</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="border border-gray-700 p-3 font-medium">
+        <a href="https://www.linkedin.com/in/shirom-chabra/" target="_blank" rel="noopener noreferrer" class="text-[#FF8A00] hover:underline">
+          Shirom Chabra
+        </a>
+      </td>
+      <td class="border border-gray-700 p-3">Chief Executive Officer (CEO)</td>
+      <td class="border border-gray-700 p-3">Top 2% Cambridge MD/PhD graduate in computational biology, researcher, and entrepreneur, who founded award-winning healthcare AI startup MedPredict and served at McKinsey & Company, London</td>
+    </tr>
+    <tr>
+      <td class="border border-gray-700 p-3 font-medium">
+        <a href="https://www.linkedin.com/in/vatsal-raina-497a48139/" target="_blank" rel="noopener noreferrer" class="text-[#FF8A00] hover:underline">
+          Vatsal Raina
+        </a>
+      </td>
+      <td class="border border-gray-700 p-3">Chief Technology Officer (CTO)</td>
+      <td class="border border-gray-700 p-3">Top 1% Cambridge graduate in information engineering, PhD research in natural language processing and generative AI from the Machine Intelligence Laboratory Cambridge, formerly at Meta researching efficient retrieval augmented text embeddings</td>
+    </tr>
+    <tr>
+      <td class="border border-gray-700 p-3 font-medium">
+        <a href="https://www.linkedin.com/in/vyas-raina-71b226152/" target="_blank" rel="noopener noreferrer" class="text-[#FF8A00] hover:underline">
+          Vyas Raina
+        </a>
+      </td>
+      <td class="border border-gray-700 p-3">Chief Science Officer (CSO)</td>
+      <td class="border border-gray-700 p-3">Top 2% Cambridge engineering graduate with PhD research in adversarial robustness of LLMs from the Machine Intelligence Laboratory Cambridge, former research scientist at Amazon Web Services, and lead NLP researcher at Schofield</td>
+    </tr>
+    <tr>
+      <td class="border border-gray-700 p-3 font-medium">
+        <a href="https://www.linkedin.com/in/adian-liusie-00b60511a/" target="_blank" rel="noopener noreferrer" class="text-[#FF8A00] hover:underline">
+          Adian Liusie
+        </a>
+      </td>
+      <td class="border border-gray-700 p-3">AI Engineer Lead</td>
+      <td class="border border-gray-700 p-3">Top 3% Cambridge engineering graduate with PhD research in biases and interpretability of LLMs from the Machine Intelligence Laboratory Cambridge, previously at Microsoft subsidiary, as well as author of the renowned SelfCheckGPT</td>
+    </tr>
+    <tr>
+      <td class="border border-gray-700 p-3 font-medium">
+        <a href="https://www.linkedin.com/in/piotr-molenda-10180b248/" target="_blank" rel="noopener noreferrer" class="text-[#FF8A00] hover:underline">
+          Piotr Molenda
+        </a>
+      </td>
+      <td class="border border-gray-700 p-3">AI/ML Engineer</td>
+      <td class="border border-gray-700 p-3">Top Cambridge masters in engineering graduate, with a focus on electrical, information, and control systems, specializing in machine learning and AI. Piotr has experience in developing watermarking for large language models</td>
+    </tr>
+    <tr>
+      <td class="border border-gray-700 p-3 font-medium">
+        <a href="https://www.linkedin.com/in/adam-liusie-54195b151/" target="_blank" rel="noopener noreferrer" class="text-[#FF8A00] hover:underline">
+          Adam Liusie
+        </a>
+      </td>
+      <td class="border border-gray-700 p-3">Chief Business Officer</td>
+      <td class="border border-gray-700 p-3">Top University of Wisconsin-Madison engineering graduate in industrial engineering, entrepreneur, and venture capital associate experienced in founding service-based companies and leading successful capital raises for startups</td>
+    </tr>
+    <tr>
+      <td class="border border-gray-700 p-3 font-medium">
+        <a href="https://www.linkedin.com/in/akash--gupta/" target="_blank" rel="noopener noreferrer" class="text-[#FF8A00] hover:underline">
+          Akash Gupta
+        </a>
+      </td>
+      <td class="border border-gray-700 p-3">AI/ML Research Engineer</td>
+      <td class="border border-gray-700 p-3">Top 1% Cambridge graduate in Information Engineering, with a Masters in Controlled Text Generation and a focus in Computational Neuroscience and ML, formerly working on automation and AI projects at Speechmatics and Roku</td>
+    </tr>
+  </tbody>
+</table>
 </div>
 
 <div class="mt-12">
@@ -441,14 +441,14 @@ export default function OrangepaperClient() {
           }}
         />
         {/* Google Analytics */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-29PC3S1MN3"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-9CR9GSVTDD"></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-29PC3S1MN3');
+              gtag('config', 'G-9CR9GSVTDD');
             `,
           }}
         />
