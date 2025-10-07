@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, ArrowUpRight, Copy, FileText, ChevronLeft, ChevronRight } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, Copy, FileText, ChevronLeft, ChevronRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
@@ -120,8 +120,8 @@ export default function ChatoshiLanding() {
     }
 
     updateSlidesToShow()
-    window.addEventListener('resize', updateSlidesToShow)
-    return () => window.removeEventListener('resize', updateSlidesToShow)
+    window.addEventListener("resize", updateSlidesToShow)
+    return () => window.removeEventListener("resize", updateSlidesToShow)
   }, [])
 
   // Calculate max slide position (we can scroll until we show the last 4 logos)
@@ -322,18 +322,75 @@ export default function ChatoshiLanding() {
               {/* Contract Address for Web */}
               <div className="hidden sm:block w-full max-w-3xl mx-auto mt-16">
                 <div className="w-full h-px bg-white/10 mb-8"></div>
-                <div className="flex items-center gap-4 p-4 sm:p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 shadow-lg">
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm text-gray-400 mb-2">Contract Address</p>
-                    <p className="text-xs sm:text-base font-mono truncate">{contractAddress}</p>
+                <div className="p-6 rounded-2xl bg-gradient-to-br from-[#2A2A2A] to-[#1A1A1A] border border-white/10 shadow-lg">
+                  {/* Header with Solana logo */}
+                  <div className="flex items-center justify-center gap-2 mb-6">
+                    <svg className="w-5 h-5" viewBox="0 0 397.7 311.7" fill="none">
+                      <linearGradient
+                        id="solana-gradient-desktop"
+                        x1="360.8791"
+                        y1="351.4553"
+                        x2="141.213"
+                        y2="-69.2936"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop offset="0" stopColor="#00FFA3" />
+                        <stop offset="1" stopColor="#DC1FFF" />
+                      </linearGradient>
+                      <linearGradient
+                        id="solana-gradient-2-desktop"
+                        x1="264.8291"
+                        y1="401.6014"
+                        x2="45.163"
+                        y2="-19.1475"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop offset="0" stopColor="#00FFA3" />
+                        <stop offset="1" stopColor="#DC1FFF" />
+                      </linearGradient>
+                      <linearGradient
+                        id="solana-gradient-3-desktop"
+                        x1="312.5484"
+                        y1="376.688"
+                        x2="92.8822"
+                        y2="-44.061"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop offset="0" stopColor="#00FFA3" />
+                        <stop offset="1" stopColor="#DC1FFF" />
+                      </linearGradient>
+                      <path
+                        d="M64.6 237.9c2.4-2.4 5.7-3.8 9.2-3.8h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1L64.6 237.9z"
+                        fill="url(#solana-gradient-desktop)"
+                      />
+                      <path
+                        d="M64.6 3.8C67.1 1.4 70.4 0 73.8 0h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1L64.6 3.8z"
+                        fill="url(#solana-gradient-2-desktop)"
+                      />
+                      <path
+                        d="M333.1 120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8 0-8.7 7-4.6 11.1l62.7 62.7c2.4 2.4 5.7 3.8 9.2 3.8h317.4c5.8 0 8.7-7 4.6-11.1l-62.7-62.7z"
+                        fill="url(#solana-gradient-3-desktop)"
+                      />
+                    </svg>
+                    <span className="text-sm text-gray-400">Solana Contract Address</span>
                   </div>
-                  <Button
-                    onClick={copyAddress}
-                    variant="outline"
-                    className={`border-[#FF8A00] text-[#FF8A00] ${buttonHoverStyle}`}
-                  >
-                    <Copy className="mr-2 h-4 w-4" /> Copy
-                  </Button>
+
+                  <div className="grid grid-cols-[1fr_auto] gap-4 items-center">
+                    {/* Middle block - Contract address */}
+                    <div className="flex items-center justify-center p-3 rounded-lg bg-black/20">
+                      <p className="text-base font-mono text-white text-center">{contractAddress}</p>
+                    </div>
+
+                    {/* Right block - Copy button */}
+                    <div className="flex items-center justify-center">
+                      <Button
+                        onClick={copyAddress}
+                        className="bg-transparent border border-[#FF8A00] text-[#FF8A00] hover:bg-[#FF8A00] hover:text-black transition-colors"
+                      >
+                        <Copy className="mr-2 h-4 w-4" /> Copy
+                      </Button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -355,18 +412,77 @@ export default function ChatoshiLanding() {
           />
           <div className="container mx-auto px-4 relative">
             <div className="max-w-3xl mx-auto">
-              <div className="flex items-center gap-4 p-4 sm:p-6 rounded-2xl bg-gray-50/5 backdrop-blur-md border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.12)]">
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm text-gray-400 mb-2">Contract Address</p>
-                  <p className="text-xs sm:text-base font-mono truncate">{contractAddress}</p>
+              <div className="p-4 rounded-2xl bg-gray-50/5 backdrop-blur-md border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.12)]">
+                {/* Header with Solana logo */}
+                <div className="flex items-center justify-center gap-2 mb-4">
+                  <svg className="w-4 h-4" viewBox="0 0 397.7 311.7" fill="none">
+                    <linearGradient
+                      id="solana-gradient-mobile"
+                      x1="360.8791"
+                      y1="351.4553"
+                      x2="141.213"
+                      y2="-69.2936"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop offset="0" stopColor="#00FFA3" />
+                      <stop offset="1" stopColor="#DC1FFF" />
+                    </linearGradient>
+                    <linearGradient
+                      id="solana-gradient-2-mobile"
+                      x1="264.8291"
+                      y1="401.6014"
+                      x2="45.163"
+                      y2="-19.1475"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop offset="0" stopColor="#00FFA3" />
+                      <stop offset="1" stopColor="#DC1FFF" />
+                    </linearGradient>
+                    <linearGradient
+                      id="solana-gradient-3-mobile"
+                      x1="312.5484"
+                      y1="376.688"
+                      x2="92.8822"
+                      y2="-44.061"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop offset="0" stopColor="#00FFA3" />
+                      <stop offset="1" stopColor="#DC1FFF" />
+                    </linearGradient>
+                    <path
+                      d="M64.6 237.9c2.4-2.4 5.7-3.8 9.2-3.8h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1L64.6 237.9z"
+                      fill="url(#solana-gradient-mobile)"
+                    />
+                    <path
+                      d="M64.6 3.8C67.1 1.4 70.4 0 73.8 0h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1L64.6 3.8z"
+                      fill="url(#solana-gradient-2-mobile)"
+                    />
+                    <path
+                      d="M333.1 120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8 0-8.7 7-4.6 11.1l62.7 62.7c2.4 2.4 5.7 3.8 9.2 3.8h317.4c5.8 0 8.7-7 4.6-11.1l-62.7-62.7z"
+                      fill="url(#solana-gradient-3-mobile)"
+                    />
+                  </svg>
+                  <span className="text-sm text-gray-400">Solana Contract Address</span>
                 </div>
-                <Button
-                  onClick={copyAddress}
-                  variant="outline"
-                  className={`border-[#FF8A00] text-[#FF8A00] ${buttonHoverStyle}`}
-                >
-                  <Copy className="mr-2 h-4 w-4" /> Copy
-                </Button>
+
+                {/* Mobile layout - stacked */}
+                <div className="space-y-3">
+                  {/* Contract address block */}
+                  <div className="p-3 rounded-lg bg-black/20">
+                    <p className="text-xs font-mono text-center break-all">{contractAddress}</p>
+                  </div>
+
+                  {/* Copy button block */}
+                  <div className="flex justify-center">
+                    <Button
+                      onClick={copyAddress}
+                      variant="outline"
+                      className={`border-[#FF8A00] text-[#FF8A00] ${buttonHoverStyle} w-full`}
+                    >
+                      <Copy className="mr-2 h-4 w-4" /> Copy
+                    </Button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -391,7 +507,7 @@ export default function ChatoshiLanding() {
                   <button
                     onClick={prevSlide}
                     className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/80 text-white rounded-full p-1.5 transition-all duration-300 flex items-center justify-center"
-                    style={{ top: 'calc(50% - 8px)' }}
+                    style={{ top: "calc(50% - 8px)" }}
                     aria-label="Previous slide"
                   >
                     <ChevronLeft className="w-4 h-4" />
@@ -400,7 +516,7 @@ export default function ChatoshiLanding() {
                   <button
                     onClick={nextSlide}
                     className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/80 text-white rounded-full p-1.5 transition-all duration-300 flex items-center justify-center"
-                    style={{ top: 'calc(50% - 8px)' }}
+                    style={{ top: "calc(50% - 8px)" }}
                     aria-label="Next slide"
                   >
                     <ChevronRight className="w-4 h-4" />
@@ -473,7 +589,7 @@ export default function ChatoshiLanding() {
                   <button
                     onClick={prevSlide}
                     className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/80 text-white rounded-full p-2 transition-all duration-300 flex items-center justify-center"
-                    style={{ top: 'calc(50% - 12px)' }}
+                    style={{ top: "calc(50% - 12px)" }}
                     aria-label="Previous slide"
                   >
                     <ChevronLeft className="w-5 h-5" />
@@ -482,7 +598,7 @@ export default function ChatoshiLanding() {
                   <button
                     onClick={nextSlide}
                     className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/80 text-white rounded-full p-2 transition-all duration-300 flex items-center justify-center"
-                    style={{ top: 'calc(50% - 12px)' }}
+                    style={{ top: "calc(50% - 12px)" }}
                     aria-label="Next slide"
                   >
                     <ChevronRight className="w-5 h-5" />
